@@ -6,42 +6,26 @@ body {
 .button-equals,
 .button-back,
 .button-clear {
-    width: 24%;
-    border: 1px solid black;    
+    border: 1px solid red;    
     text-align: center;
-    padding: 6px 0px;
+    cursor: pointer;
 }
 
 .display {
-    width: 100%;
     border: 1px solid black;
     text-align: right;
-    padding: 6px 0px;
     font-size: 2.3rem;
 }
 
 #cal-body {
-    width: 30vw;
     border: 1px solid black;
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 5px;
 }
 
 #button-layout {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 6px;
+    border: 1px solid black;
 }
 
 #heading {
-    width: 100%;
     font-size: 2.6rem;
     text-align: left;
     border: 1px solid black;
