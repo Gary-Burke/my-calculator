@@ -5,9 +5,14 @@ let equation = ""
 // Wait for the DOM to load before executing functions
 document.addEventListener("DOMContentLoaded", function () {
 
-    let buttons = document.getElementsByClassName("button");
-    for (let button of buttons) {
-        button.addEventListener("click", buildEquation)
+    let operands = document.getElementsByClassName("button-operand");
+    for (let operand of operands) {
+        operand.addEventListener("click", buildEquationOperand)
+    }
+
+    let operators = document.getElementsByClassName("button-operator");
+    for (let operator of operators) {
+        operator.addEventListener("click", buildEquationOperator)
     }
 
     let equals = document.getElementById("button-equals");
@@ -15,7 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-function buildEquation(e) {
+function buildEquationOperand(e) {
+    const value = e.currentTarget.getAttribute("data-value");
+    equation += value;
+    document.getElementById("equation").innerText = equation;
+    console.log("equation: " + equation);
+    return equation
+}
+
+function buildEquationOperator(e) {
     const value = e.currentTarget.getAttribute("data-value");
     equation += value;
     document.getElementById("equation").innerText = equation;
