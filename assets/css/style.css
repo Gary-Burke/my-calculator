@@ -3,12 +3,13 @@ body {
 }
 
 .button,
- .button-equals {
+.button-equals,
+.button-back,
+.button-clear {
     width: 24%;
     border: 1px solid black;    
     text-align: center;
     padding: 6px 0px;
-    
 }
 
 .display {
