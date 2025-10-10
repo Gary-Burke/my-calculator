@@ -1,6 +1,7 @@
 /* jshint esversion: 11 */
 
 let equation = ""
+let isProcessing = false; // Prevent operators from being clicked consecutively
 
 // Wait for the DOM to load before executing functions
 document.addEventListener("DOMContentLoaded", function () {
@@ -21,18 +22,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function buildEquationOperand(e) {
+    isProcessing = false;
     const value = e.currentTarget.getAttribute("data-value");
     equation += value;
     document.getElementById("equation").innerText = equation;
-    console.log("equation: " + equation);
+    // TODO: console.log("equation: " + equation);
     return equation
 }
 
 function buildEquationOperator(e) {
+    if (isProcessing) return;
+
     const value = e.currentTarget.getAttribute("data-value");
     equation += value;
     document.getElementById("equation").innerText = equation;
-    console.log("equation: " + equation);
+    // TODO: console.log("equation: " + equation);
+    isProcessing = true;
     return equation
 }
 
