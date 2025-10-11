@@ -1,5 +1,4 @@
 body {
-    font-size: 2rem;
     color: beige;
     background-color: gray;
 }
@@ -9,10 +8,21 @@ body {
 .button-equals,
 .button-back,
 .button-clear {
-    border-radius: 0.5rem;  
+    border-radius: 0.7rem;
     text-align: center;
     cursor: pointer;
-    border: solid 1px white;
+    background: #e0e0e0;
+    border: 5px rgb(40, 40, 40) outset;
+}
+
+
+.button-operator:active,
+.button-operand:active,
+.button-equals:active,
+.button-back:active,
+.button-clear:active {
+    color: white;
+    transform: translateY(0.15rem);
 }
 
 .button-operand {
@@ -23,22 +33,27 @@ body {
     background-color: rgb(80, 80, 80);
 }
 
+.button-equals,
+.button-back,
+.button-clear {
+    background-color: rgb(10, 10, 10);
+}
+
 .display {
-    border: 1px solid black;
+    color: white;
     text-align: right;
-    font-size: 2.3rem;
-    background-color: rgb(30, 30, 30);
-    border-radius: 0.5rem;
-    border: 1px solid yellow;
+    background-color: rgb(40, 40, 40);
+    border-radius: 0.7rem;
+    box-shadow: inset 2px 2px 5px rgb(0, 0, 0), inset -4px -4px 10px rgb(20, 20, 20);
+    border: 1px solid rgb(0, 0, 0);
 }
 
 #cal-body {
-    border: 1px solid white;
-    background-color: black;
-    border-radius: 0.5rem;
+    border: 6px ridge white;
+    background-color: rgb(18, 18, 18);
+    border-radius: 1rem;
 }
 
 #heading {
-    font-size: 2.6rem;
     text-align: left;
 }

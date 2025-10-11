@@ -19,13 +19,21 @@
 
 <body>
     <main>
-        <div id="cal-body" class="container mt-4 col-12 col-md-8 col-lg-6 col-xl-4">
+        <div id="cal-body" class="container mt-4 col-12 col-md-8 col-lg-6 col-xl-4 px-4">
 
-            <div id="heading" class="col-12 px-2 my-2">Calculator</div>
-            <div id="equation" class="col-12 display px-2">eq.</div>
-            <div id="answer" class="col-12 display px-2 my-2">answer</div>
+            <div id="heading" class="col-12 px-2 my-2">
+                <h1>Calculator</h1>
+            </div>
 
-            <div id="button-layout" class="row row-cols-4 g-2 mb-2">
+            <div class="col-12 display px-2 pt-2 align-items-center">
+                <h2 id="equation" class="h5">eq.</h2>
+            </div>
+
+            <div class="col-12 display px-2 pt-2 my-3 align-items-center">
+                <h2 id="answer" class="h1">answer</h2>
+            </div>
+
+            <div id="button-layout" class="row row-cols-4 g-3 mb-4 fs-3">
 
                 <div class="col">
                     <div id="l-bracket" class="p-1 button-operand" data-value="(">(</div>
@@ -106,26 +114,6 @@
                 <div class="col">
                     <div id="/" class="p-1 button-operator" data-value="/">/</div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
 
