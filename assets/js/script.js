@@ -2,8 +2,8 @@
 
 import * as math from 'https://cdn.jsdelivr.net/npm/mathjs@11.11.0/+esm'; // Able to use mathjs functions and methods in code
 
-let equation = ""
-let temp = "" // Displays number being built and resets after operator is clicked to indicated start of new number
+let equation = "";
+let temp = ""; // Displays number being built and resets after operator is clicked to indicated start of new number
 let isProcessing = true; // Prevent operators from being clicked consecutively, e.g. 90+2+++---
 let reset = false; // Resets the equation and answer, if a numbers is pressed after the equals button has been pressed.
 
@@ -20,8 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
         operator.addEventListener("click", buildEquationOperator)
     }
 
-    let equals = document.getElementById("button-equals");
+    let equals = document.getElementById("equals");
     equals.addEventListener("click", calculateEquation)
+
+    let clear = document.getElementById("clear");
+    clear.addEventListener("click", () => {
+        equation = "";
+        temp = "";
+        isProcessing = true;
+        reset = false;
+        document.getElementById("answer").innerText = 0;
+        document.getElementById("equation").innerText = 0;
+    });
 
 });
 
