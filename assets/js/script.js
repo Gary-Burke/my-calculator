@@ -6,6 +6,7 @@ let equation = "";
 let temp = ""; // Displays number being built and resets after operator is clicked to indicated start of new number
 let isProcessing = true; // Prevent operators from being clicked consecutively, e.g. 90+2+++---
 let reset = false; // Resets the equation and answer, if a numbers is pressed after the equals button has been pressed.
+let decimal = false;
 
 // Wait for the DOM to load before executing functions
 document.addEventListener("DOMContentLoaded", function () {
@@ -41,7 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function buildEquationOperand(e) {
 
-    const value = e.currentTarget.getAttribute("data-value");
+    const value = e.currentTarget.getAttribute("data-value");    
+
+    if ( (value === ".") && (temp.includes(".")) ) {  //Ensures a decimal can't be repeated within a value
+        return;
+    }
 
     if (reset) {
         equation = value;
