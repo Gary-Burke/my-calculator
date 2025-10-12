@@ -55,6 +55,10 @@ function buildEquationOperand(e) {
         temp += value;
     }
 
+    if (temp === ".") {
+        temp = "0.";
+    }
+
     document.getElementById("answer").innerText = temp;
     isProcessing = false;
 
