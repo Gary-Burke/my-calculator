@@ -1,11 +1,11 @@
 /* jshint esversion: 11 */
 
-import * as math from 'https://cdn.jsdelivr.net/npm/mathjs@11.11.0/+esm';
+import * as math from 'https://cdn.jsdelivr.net/npm/mathjs@11.11.0/+esm'; // Able to use mathjs functions and methods in code
 
 let equation = ""
-let temp = ""
-let isProcessing = true; // Prevent operators from being clicked consecutively
-let reset = false;
+let temp = "" // Displays number being built and resets after operator is clicked to indicated start of new number
+let isProcessing = true; // Prevent operators from being clicked consecutively, e.g. 90+2+++---
+let reset = false; // Resets the equation and answer, if a numbers is pressed after the equals button has been pressed.
 
 // Wait for the DOM to load before executing functions
 document.addEventListener("DOMContentLoaded", function () {
@@ -58,7 +58,7 @@ function buildEquationOperand(e) {
  */
 function buildEquationOperator(e) {
     if (isProcessing) return;
-    
+
     reset = false;
     const value = e.currentTarget.getAttribute("data-value");
 
@@ -78,7 +78,7 @@ function buildEquationOperator(e) {
 
 
 /**
- * Calculates built equation
+ * Calculates built equation by evaulating expression with mathjs
  */
 function calculateEquation(e) {
     if (isProcessing) return;
