@@ -1,5 +1,7 @@
 /* jshint esversion: 11 */
 
+import * as math from 'https://cdn.jsdelivr.net/npm/mathjs@11.11.0/+esm';
+
 let equation = ""
 let answer = ""
 let temp = ""
@@ -61,7 +63,7 @@ function buildEquationOperator(e) {
 function calculateEquation(e) {
     if (isProcessing) return;
 
-    let answer = "X";
+    let answer = math.evaluate(equation);
     document.getElementById("answer").innerText = answer;
     equation = ""
     answer = ""
