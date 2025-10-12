@@ -48,16 +48,13 @@ function buildEquationOperand(e) {
         return;
     }
 
-    if (reset) {
-        equation = value;
+    if (reset) {        
         temp = value;
         reset = false;
-    } else {
-        equation += value;
+    } else {        
         temp += value;
     }
 
-    document.getElementById("equation").innerText = equation;
     document.getElementById("answer").innerText = temp;
     isProcessing = false;
 
@@ -77,7 +74,7 @@ function buildEquationOperator(e) {
     reset = false;
     const value = e.currentTarget.getAttribute("data-value");
 
-    equation += value;
+    equation += temp + value;
     document.getElementById("equation").innerText = equation;
     temp = "";
     document.getElementById("answer").innerText = 0;
@@ -96,7 +93,11 @@ function buildEquationOperator(e) {
  * Calculates built equation by evaulating expression with mathjs
  */
 function calculateEquation(e) {
-    if (isProcessing) return;
+    if (isProcessing || reset) return;
+
+    if (temp) {
+        equation += temp;
+    }
 
     let answer = math.evaluate(equation);
 
