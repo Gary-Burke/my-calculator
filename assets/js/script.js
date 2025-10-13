@@ -13,16 +13,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let operands = document.getElementsByClassName("button-operand");
     for (let operand of operands) {
         operand.addEventListener("click", buildEquationOperand)
-    }
+    };
+
 
     let operators = document.getElementsByClassName("button-operator");
     for (let operator of operators) {
         operator.addEventListener("click", buildEquationOperator)
-    }
+    };
+
 
     let equals = document.getElementById("equals");
-    equals.addEventListener("click", calculateEquation)
+    equals.addEventListener("click", calculateEquation);
 
+
+    /**
+     * Autonomous function to button clear when clicked.
+     * This resets the entire calculator display, variables and equation.
+     */
     let clear = document.getElementById("clear");
     clear.addEventListener("click", () => {
         equation = "";
@@ -31,6 +38,26 @@ document.addEventListener("DOMContentLoaded", function () {
         reset = false;
         document.getElementById("answer").innerText = 0;
         document.getElementById("equation").innerText = 0;
+    });
+
+
+    /**
+     * Autonomous function to button back when clicked.
+     * This removes the last character in the temp variable, allowing the user to make corrections on the calculator display.
+     */
+    let backButton = document.getElementById("back");
+    backButton.addEventListener("click", () => {
+        if (temp === "") return;
+        temp = temp.slice(0,-1);
+
+        if (temp === "") {
+            document.getElementById("answer").innerText = 0;
+        } else {
+            document.getElementById("answer").innerText = temp;
+        };
+
+        console.log("temp: " + temp);
+        console.log("equation: " + equation);
     });
 
 });
