@@ -51,7 +51,8 @@ body {
 #cal-body {
     border: 2px solid rgb(40, 40, 40);
     border-radius: 1.5rem;
-    background: linear-gradient(145deg, rgb(20, 20, 20), rgb(40, 40, 40));
+    background: linear-gradient(145deg, rgb(50, 50, 50), rgb(25, 25, 25) );
+    /* background-color: rgb(40, 40, 40); */
     box-shadow:
     4px 4px 10px #1c1e22,
     -4px -4px 10px #4a4c55,
