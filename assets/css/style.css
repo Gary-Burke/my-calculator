@@ -1,6 +1,6 @@
 body {
     color: beige;
-    background-color: gray;
+    background-color: beige;
 }
 
 .button-operator,
@@ -49,9 +49,16 @@ body {
 }
 
 #cal-body {
-    border: 6px ridge white;
-    background-color: rgb(18, 18, 18);
-    border-radius: 1rem;
+    border: 2px solid #2d2f36;
+    /* background-color: rgb(40, 40, 40); */
+    border-radius: 1.5rem;
+    /* box-shadow: rgb(10, 10, 10) 0px 0px 10px 10px inset; */
+    background: linear-gradient(145deg, #2d2f36, #3a3c45);
+    box-shadow:
+    4px 4px 10px #1c1e22,
+    -4px -4px 10px #4a4c55,
+    inset 2px 2px 6px rgba(255, 255, 255, 0.1),
+    inset -2px -2px 6px rgba(0, 0, 0, 0.4);
 }
 
 #heading {
