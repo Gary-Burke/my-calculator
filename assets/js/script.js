@@ -1,13 +1,13 @@
 /* jshint esversion: 11 */
 
-import * as math from 'https://cdn.jsdelivr.net/npm/mathjs@11.11.0/+esm'; // Able to use mathjs functions and methods in code
+import * as math from 'https://cdn.jsdelivr.net/npm/mathjs@11.11.0/+esm'; // Able to use mathjs functions and methods in code.
 
 let equation = "";
-let temp = ""; // Displays number being built and resets after operator is clicked to indicated start of new number
+let temp = ""; // Displays number being built and resets after operator is clicked to indicated start of new number.
 let isProcessing = true; // Prevent operators from being clicked consecutively, e.g. 90+2+++---
 let reset = false; // Resets the equation and answer, if a numbers is pressed after the equals button has been pressed.
 
-// Wait for the DOM to load before executing functions
+// Wait for the DOM to load before executing functions.
 document.addEventListener("DOMContentLoaded", function () {
 
     let operands = document.getElementsByClassName("button-operand");
@@ -70,12 +70,17 @@ function buildEquationOperand(e) {
 
     const value = e.currentTarget.getAttribute("data-value");
 
-    // Ensures a decimal can't be repeated within a value
+    // This check stops entire function if value is 0 and second would be too.
+    if ( (temp.length === 1) && (temp === "0") && (value === "0")) {
+        return;
+    }
+
+    // Ensures a decimal can't be repeated within a value.
     if ((value === ".") && (temp.includes("."))) { 
         return;
     }
 
-    // This allows the calculator to reset, after the equals button has been clicked and a number is then pressed
+    // This allows the calculator to reset, after the equals button has been clicked and a number is then pressed.
     if (reset) {
         temp = value;
         reset = false;
@@ -90,7 +95,7 @@ function buildEquationOperand(e) {
         temp = "0.";
     }
 
-    // This condition ensures a value can't start with 0 unless followed by a decimal
+    // This condition ensures a value can't start with 0 unless followed by a decimal.
     if ( (temp.length === 2) && (temp.charAt(0) === "0") && (temp.charAt(1) !== ".")) {
         temp = temp.slice(1);
     }
@@ -131,7 +136,7 @@ function buildEquationOperator(e) {
 
 
 /**
- * Calculates built equation by evaulating expression with mathjs
+ * Calculates built equation by evaulating expression with mathjs.
  */
 function calculateEquation() {
     if (isProcessing || reset) return;

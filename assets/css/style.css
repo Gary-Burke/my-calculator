@@ -8,6 +8,7 @@ body {
 .button-equals,
 .button-back,
 .button-clear {
+    color: white;
     border-radius: 0.7rem;
     text-align: center;
     cursor: pointer;
@@ -20,8 +21,7 @@ body {
 .button-operand:active,
 .button-equals:active,
 .button-back:active,
-.button-clear:active {
-    color: white;
+.button-clear:active {    
     transform: translateY(0.15rem);
 }
 
