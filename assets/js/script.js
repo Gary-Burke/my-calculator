@@ -6,7 +6,6 @@ let equation = "";
 let temp = ""; // Displays number being built and resets after operator is clicked to indicated start of new number
 let isProcessing = true; // Prevent operators from being clicked consecutively, e.g. 90+2+++---
 let reset = false; // Resets the equation and answer, if a numbers is pressed after the equals button has been pressed.
-let decimal = false;
 
 // Wait for the DOM to load before executing functions
 document.addEventListener("DOMContentLoaded", function () {
@@ -42,16 +41,18 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function buildEquationOperand(e) {
 
-    const value = e.currentTarget.getAttribute("data-value");    
+    const value = e.currentTarget.getAttribute("data-value");
 
-    if ( (value === ".") && (temp.includes(".")) ) {  //Ensures a decimal can't be repeated within a value
+    if ((value === ".") && (temp.includes("."))) { //Ensures a decimal can't be repeated within a value
         return;
     }
 
-    if (reset) {        
+    if (reset) {
         temp = value;
         reset = false;
-    } else {        
+        equation = "";
+        document.getElementById("equation").innerText = 0;
+    } else {
         temp += value;
     }
 
@@ -96,22 +97,21 @@ function buildEquationOperator(e) {
 /**
  * Calculates built equation by evaulating expression with mathjs
  */
-function calculateEquation(e) {
+function calculateEquation() {
     if (isProcessing || reset) return;
 
     if (temp) {
         equation += temp;
     }
 
-    let answer = math.evaluate(equation);
+    equation = math.evaluate(equation);
 
-    document.getElementById("answer").innerText = answer;
-    equation = answer;
-    document.getElementById("equation").innerText = answer;
+    document.getElementById("answer").innerText = equation;
+    
+    document.getElementById("equation").innerText = equation;
     temp = "";
     reset = true;
 
-    console.log("answer: " + answer);
     console.log("equation: " + equation);
     console.log("temp: " + temp);
     console.log("reset: " + reset);
