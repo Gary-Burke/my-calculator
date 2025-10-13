@@ -70,10 +70,12 @@ function buildEquationOperand(e) {
 
     const value = e.currentTarget.getAttribute("data-value");
 
-    if ((value === ".") && (temp.includes("."))) { //Ensures a decimal can't be repeated within a value
+    // Ensures a decimal can't be repeated within a value
+    if ((value === ".") && (temp.includes("."))) { 
         return;
     }
 
+    // This allows the calculator to reset, after the equals button has been clicked and a number is then pressed
     if (reset) {
         temp = value;
         reset = false;
@@ -83,8 +85,14 @@ function buildEquationOperand(e) {
         temp += value;
     }
 
+    // This statement displays a float < 1 with a zero in front, e.g. .6 as 0.6
     if (temp === ".") {
         temp = "0.";
+    }
+
+    // This condition ensures a value can't start with 0 unless followed by a decimal
+    if ( (temp.length === 2) && (temp.charAt(0) === "0") && (temp.charAt(1) !== ".")) {
+        temp = temp.slice(1);
     }
 
     document.getElementById("answer").innerText = temp;
@@ -94,6 +102,7 @@ function buildEquationOperand(e) {
     console.log("temp: " + temp);
     console.log("reset: " + reset);
     console.log("isProcessing: " + isProcessing);
+    console.log("temp.length: " + temp.length);
 }
 
 
