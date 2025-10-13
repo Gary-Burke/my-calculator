@@ -49,11 +49,9 @@ body {
 }
 
 #cal-body {
-    border: 2px solid #2d2f36;
-    /* background-color: rgb(40, 40, 40); */
+    border: 2px solid rgb(40, 40, 40);
     border-radius: 1.5rem;
-    /* box-shadow: rgb(10, 10, 10) 0px 0px 10px 10px inset; */
-    background: linear-gradient(145deg, #2d2f36, #3a3c45);
+    background: linear-gradient(145deg, rgb(20, 20, 20), rgb(40, 40, 40));
     box-shadow:
     4px 4px 10px #1c1e22,
     -4px -4px 10px #4a4c55,
