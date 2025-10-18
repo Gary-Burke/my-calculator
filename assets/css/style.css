@@ -10,10 +10,11 @@ body {
     cursor: pointer;
     background: #e0e0e0;
     border: 5px rgb(40, 40, 40) outset;
+    transition: transform 0.1s;
 }
 
-.button:active {
-    transform: translateY(0.15rem);
+.is-active {
+    transform: translateY(0.2rem);
 }
 
 .button-operand {

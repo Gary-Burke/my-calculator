@@ -10,6 +10,18 @@ let reset = false; // Resets the equation and answer, if a numbers is pressed af
 // Wait for the DOM to load before executing functions.
 document.addEventListener("DOMContentLoaded", function () {
 
+    /**
+     * Adds the is-active class to all buttons when pressed or clicked.
+     * Works with touch screen and better ux with mobile.
+     */
+    document.querySelectorAll('.button').forEach(btn => {
+        btn.addEventListener('pointerdown', () => btn.classList.add('is-active'));
+        btn.addEventListener('pointerup', () => btn.classList.remove('is-active'));
+        btn.addEventListener('pointerleave', () => btn.classList.remove('is-active'));
+        btn.addEventListener('pointercancel', () => btn.classList.remove('is-active'));
+    });
+
+
     let operands = document.getElementsByClassName("button-operand");
     for (let operand of operands) {
         operand.addEventListener("click", buildEquationOperand)
@@ -48,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let backButton = document.getElementById("button-back");
     backButton.addEventListener("click", () => {
         if (temp === "") return;
-        temp = temp.slice(0,-1);
+        temp = temp.slice(0, -1);
 
         if (temp === "") {
             document.getElementById("answer").innerText = 0;
@@ -71,12 +83,12 @@ function buildEquationOperand(e) {
     const value = e.currentTarget.getAttribute("data-value");
 
     // This check stops entire function if value is 0 and second would be too.
-    if ( (temp.length === 1) && (temp === "0") && (value === "0")) {
+    if ((temp.length === 1) && (temp === "0") && (value === "0")) {
         return;
     }
 
     // Ensures a decimal can't be repeated within a value.
-    if ((value === ".") && (temp.includes("."))) { 
+    if ((value === ".") && (temp.includes("."))) {
         return;
     }
 
@@ -96,7 +108,7 @@ function buildEquationOperand(e) {
     }
 
     // This condition ensures a value can't start with 0 unless followed by a decimal.
-    if ( (temp.length === 2) && (temp.charAt(0) === "0") && (temp.charAt(1) !== ".")) {
+    if ((temp.length === 2) && (temp.charAt(0) === "0") && (temp.charAt(1) !== ".")) {
         temp = temp.slice(1);
     }
 
@@ -136,7 +148,7 @@ function buildEquationOperator(e) {
 
 
 /**
- * Calculates built equation by evaulating expression with mathjs.
+ * Calculates built equation by evaluating expression with mathjs.
  */
 function calculateEquation() {
     if (isProcessing || reset) return;
@@ -148,7 +160,7 @@ function calculateEquation() {
     equation = math.evaluate(equation);
 
     document.getElementById("answer").innerText = equation;
-    
+
     document.getElementById("equation").innerText = equation;
     temp = "";
     reset = true;
