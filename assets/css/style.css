@@ -3,11 +3,7 @@ body {
     background-color: beige;
 }
 
-.button-operator,
-.button-operand,
-.button-equals,
-.button-back,
-.button-clear {
+.button {
     color: white;
     border-radius: 0.7rem;
     text-align: center;
@@ -16,12 +12,7 @@ body {
     border: 5px rgb(40, 40, 40) outset;
 }
 
-
-.button-operator:active,
-.button-operand:active,
-.button-equals:active,
-.button-back:active,
-.button-clear:active {    
+.button:active {
     transform: translateY(0.15rem);
 }
 
@@ -33,9 +24,7 @@ body {
     background-color: rgb(80, 80, 80);
 }
 
-.button-equals,
-.button-back,
-.button-clear {
+.button-functions {
     background-color: rgb(15, 15, 15);
 }
 
