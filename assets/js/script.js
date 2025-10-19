@@ -65,12 +65,14 @@ function buildEquationOperand(e) {
 
     const value = e.currentTarget.getAttribute("data-value");
 
-    // This check stops entire function if value is 0 and second would be too.
+    // This check stops the entire function if value is 0 and second would be too.
+    // Prevents value like 00256
     if ((temp.length === 1) && (temp === "0") && (value === "0")) {
         return;
     }
 
     // Ensures a decimal can't be repeated within a value.
+    // E.g. 2..500.2
     if ((value === ".") && (temp.includes("."))) {
         return;
     }

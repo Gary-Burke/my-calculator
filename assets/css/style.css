@@ -51,6 +51,11 @@ body {
     height: calc(1.3rem + .5vw);
 }
 
+/* #bracket-open,
+#bracket-closed {
+    font-size: 1rem;
+} */
+
 #cal-body {
     border: 1.5px ridge rgb(20, 20, 20);
     border-radius: 1.5rem;
