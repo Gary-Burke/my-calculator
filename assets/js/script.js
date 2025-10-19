@@ -88,6 +88,7 @@ function handleKey(e) {
     const operands = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
     const operators = ["/", "*", "-", "+"];
     const equals = "Enter";
+    const backspace = "Backspace";
 
     if (operands.includes(key)) {
         e.preventDefault();
@@ -110,6 +111,15 @@ function handleKey(e) {
     if (key === equals) {
         e.preventDefault();
         calculateEquation({
+            currentTarget: {
+                getAttribute: () => key
+            }
+        })
+    }
+
+    if (key === backspace) {
+        e.preventDefault();
+        buttonBack({
             currentTarget: {
                 getAttribute: () => key
             }
