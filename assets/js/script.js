@@ -125,6 +125,9 @@ function buildEquationOperand(e) {
 
     const value = e.currentTarget.getAttribute("data-value");
 
+    if (isProcessing && value === ")") return; // Prevents brackets to close after operator e.g. (89-)
+
+    // Keeps track of how many open/close brackets there are in the equation
     if (value === "(") {
         bracketOpen += 1;
     } else if (value === ")") {
