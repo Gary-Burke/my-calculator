@@ -6,6 +6,8 @@ let equation = "";
 let temp = ""; // Displays number being built and resets after operator is clicked to indicated start of new number.
 let isProcessing = true; // Prevent operators from being clicked consecutively, e.g. 90+2+++---
 let reset = false; // Resets the equation and answer, if a numbers is pressed after the equals button has been pressed.
+let bracketOpen = 0;
+let bracketClosed = 0;
 
 // Wait for the DOM to load before executing functions.
 document.addEventListener("DOMContentLoaded", function () {
@@ -53,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         reset = false;
         document.getElementById("answer").innerText = 0;
         document.getElementById("equation").innerText = 0;
+        bracketClosed = 0;
+        bracketOpen = 0;
     });
 
 });
@@ -64,6 +68,17 @@ document.addEventListener("DOMContentLoaded", function () {
 function buildEquationOperand(e) {
 
     const value = e.currentTarget.getAttribute("data-value");
+
+    if (value === "(") {
+        bracketOpen += 1;
+    } else if (value === ")") {
+        bracketClosed += 1;
+    }
+
+    if (bracketOpen !== bracketClosed) {
+        isProcessing = true;
+    }
+
 
     // This check stops the entire function if value is 0 and second would be too.
     // Prevents value like 00256
@@ -98,7 +113,7 @@ function buildEquationOperand(e) {
     }
 
     document.getElementById("answer").innerText = temp;
-    isProcessing = false;
+    isProcessing = (bracketOpen !== bracketClosed); // only unlock operators when brackets are balanced
 
 }
 
