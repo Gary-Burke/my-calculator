@@ -69,12 +69,11 @@ function buildEquationOperand(e) {
 
     const value = e.currentTarget.getAttribute("data-value");
 
-    
-
     if (value === "(") {
         bracketOpen += 1;
     } else if (value === ")") {
-        if (bracketClosed === bracketOpen) return;
+        if (bracketClosed === bracketOpen) return; // Prevent ")" from being used before "("
+        if (temp.at(-1) === "(") return; // Prevent empty brackets i.e. "()"
         bracketClosed += 1;
     }
     
@@ -113,6 +112,7 @@ function buildEquationOperand(e) {
 
     document.getElementById("answer").innerText = temp;
     isProcessing = false;
+    console.log("temp: " + temp);
 
 }
 
