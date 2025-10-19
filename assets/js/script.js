@@ -147,11 +147,12 @@ function calculateEquation() {
         equation += temp;
     }
 
+    document.getElementById("equation").innerText = equation + "=";
+
     equation = math.evaluate(equation);
 
     document.getElementById("answer").innerText = equation;
-
-    document.getElementById("equation").innerText = equation;
+    
     temp = "";
     reset = true;
 }
