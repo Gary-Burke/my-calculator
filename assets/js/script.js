@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let equals = document.getElementById("button-equals");
     equals.addEventListener("click", calculateEquation);
-    
+
 
     let backButton = document.getElementById("button-back");
     backButton.addEventListener("click", buttonBack);
@@ -98,11 +98,6 @@ function buildEquationOperand(e) {
     document.getElementById("answer").innerText = temp;
     isProcessing = false;
 
-    console.log("equation: " + equation);
-    console.log("temp: " + temp);
-    console.log("reset: " + reset);
-    console.log("isProcessing: " + isProcessing);
-    console.log("temp.length: " + temp.length);
 }
 
 
@@ -121,11 +116,6 @@ function buildEquationOperator(e) {
     document.getElementById("answer").innerText = 0;
 
     isProcessing = true;
-
-    console.log("equation: " + equation);
-    console.log("temp: " + temp);
-    console.log("reset: " + reset);
-    console.log("isProcessing: " + isProcessing);
 
 }
 
@@ -147,11 +137,6 @@ function calculateEquation() {
     document.getElementById("equation").innerText = equation;
     temp = "";
     reset = true;
-
-    console.log("equation: " + equation);
-    console.log("temp: " + temp);
-    console.log("reset: " + reset);
-    console.log("isProcessing: " + isProcessing);
 }
 
 
@@ -170,7 +155,4 @@ function buttonBack() {
     } else {
         document.getElementById("answer").innerText = temp;
     };
-
-    console.log("temp: " + temp);
-    console.log("equation: " + equation);
 }
