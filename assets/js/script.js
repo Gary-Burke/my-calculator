@@ -186,7 +186,7 @@ function buildEquationOperator(e) {
     const value = e.currentTarget.getAttribute("data-value");
     reset = false;
 
-    if ((temp === "(") && (value !== "-")) return;
+    if ((temp.at(-1) === "(") && (value !== "-")) return; // Prevent operator to be used after open bracket except minus "-"
 
     if (bracketOpen !== bracketClosed) {
         temp += value;
