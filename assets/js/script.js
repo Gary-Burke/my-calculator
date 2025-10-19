@@ -85,22 +85,36 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function handleKey(e) {
     const key = e.key;
-    const operands = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]
-    const operators = ["/", "*", "-", "+"]
+    const operands = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
+    const operators = ["/", "*", "-", "+"];
+    const equals = "Enter";
 
-    if (operands.includes(e.key)) {
-        e.preventDefault();        
-        buildEquationOperand({currentTarget: {getAttribute: () => key}
+    if (operands.includes(key)) {
+        e.preventDefault();
+        buildEquationOperand({
+            currentTarget: {
+                getAttribute: () => key
+            }
         });
     }
 
-    if (operators.includes(e.key)) {
-        e.preventDefault();        
-        buildEquationOperator({currentTarget: {getAttribute: () => key}
+    if (operators.includes(key)) {
+        e.preventDefault();
+        buildEquationOperator({
+            currentTarget: {
+                getAttribute: () => key
+            }
         });
     }
 
-
+    if (key === "Enter") {
+        e.preventDefault();
+        calculateEquation({
+            currentTarget: {
+                getAttribute: () => key
+            }
+        })
+    }
 }
 
 
