@@ -107,7 +107,7 @@ function handleKey(e) {
         });
     }
 
-    if (key === "Enter") {
+    if (key === equals) {
         e.preventDefault();
         calculateEquation({
             currentTarget: {
@@ -171,9 +171,6 @@ function buildEquationOperand(e) {
 
     document.getElementById("answer").innerText = temp;
     isProcessing = false;
-
-    console.log("temp: " + temp); // TODO: Delete
-
 }
 
 
@@ -181,9 +178,16 @@ function buildEquationOperand(e) {
  * Build equation by adding operators e.g. +, -, /, *
  */
 function buildEquationOperator(e) {
-    if (isProcessing) return;
-
     const value = e.currentTarget.getAttribute("data-value");
+
+    if (temp === "" && value === "-" && equation === "") { // Allow equation to start with "-"
+        temp = "0" + value;
+        document.getElementById("answer").innerText = temp;
+        document.getElementById("equation").innerText = temp;
+        isProcessing = true;
+        return;
+    } else if (isProcessing) return;
+
     reset = false;
 
     if ((temp.at(-1) === "(") && (value !== "-")) return; // Prevent operator to be used after open bracket except minus "-"
@@ -199,9 +203,6 @@ function buildEquationOperator(e) {
     }
 
     isProcessing = true;
-
-    console.log("temp: " + temp); // TODO: Delete
-
 }
 
 
@@ -234,6 +235,7 @@ function buttonBack() {
         isProcessing = true;
         return;
     }
+
     temp = temp.slice(0, -1);
 
     if (temp === "") {
