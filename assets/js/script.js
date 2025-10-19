@@ -13,6 +13,12 @@ let bracketClosed = 0;
 document.addEventListener("DOMContentLoaded", function () {
 
     /**
+     * Add event listener for keyboard keys
+     */
+    document.addEventListener("keydown", handleKey);
+
+
+    /**
      * Adds the is-active class to all buttons when pressed or clicked.
      * Works with touch screen and better ux with mobile.
      */
@@ -24,27 +30,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    /**
+     * Function for handling operands 0-9 ()
+     */
     let operands = document.getElementsByClassName("button-operand");
     for (let operand of operands) {
         operand.addEventListener("click", buildEquationOperand)
     };
 
 
+    /**
+     * Function for handling operators + - / *
+     */
     let operators = document.getElementsByClassName("button-operator");
     for (let operator of operators) {
         operator.addEventListener("click", buildEquationOperator)
     };
 
-
+    /**
+     * Function for handling equals button "="
+     */
     let equals = document.getElementById("button-equals");
     equals.addEventListener("click", calculateEquation);
 
 
+    /**
+     * Function for handling backspace on calculator display
+     */
     let backButton = document.getElementById("button-back");
     backButton.addEventListener("click", buttonBack);
 
+
     /**
-     * Autonomous function to button clear when clicked.
+     * Function handle button clear "C"
      * This resets the entire calculator display, variables and equation.
      */
     let clear = document.getElementById("button-clear");
@@ -63,6 +81,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /**
+ * Helper function to handle keyboards keys pressed
+ */
+function handleKey(e) {
+    const key = e.key;
+    const operands = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]
+
+    if (operands.includes(e.key)) {
+        e.preventDefault();        
+        buildEquationOperand({currentTarget: {getAttribute: () => key}
+        });
+    }
+}
+
+
+/**
  * Build equation by adding operands e.g. 0-9, ., ()
  */
 function buildEquationOperand(e) {
@@ -76,7 +109,7 @@ function buildEquationOperand(e) {
         if (temp.at(-1) === "(") return; // Prevent empty brackets i.e. "()"
         bracketClosed += 1;
     }
-    
+
 
     // This check stops the entire function if value is 0 and second would be too.
     // Prevents value like 00256
@@ -151,7 +184,7 @@ function calculateEquation() {
     equation = math.evaluate(equation);
 
     document.getElementById("answer").innerText = equation;
-    
+
     temp = "";
     reset = true;
 }
