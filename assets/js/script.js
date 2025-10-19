@@ -36,7 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let equals = document.getElementById("button-equals");
     equals.addEventListener("click", calculateEquation);
+    
 
+    let backButton = document.getElementById("button-back");
+    backButton.addEventListener("click", buttonBack);
 
     /**
      * Autonomous function to button clear when clicked.
@@ -50,26 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
         reset = false;
         document.getElementById("answer").innerText = 0;
         document.getElementById("equation").innerText = 0;
-    });
-
-
-    /**
-     * Autonomous function to button back when clicked.
-     * This removes the last character in the temp variable, allowing the user to make corrections on the calculator display.
-     */
-    let backButton = document.getElementById("button-back");
-    backButton.addEventListener("click", () => {
-        if (temp === "") return;
-        temp = temp.slice(0, -1);
-
-        if (temp === "") {
-            document.getElementById("answer").innerText = 0;
-        } else {
-            document.getElementById("answer").innerText = temp;
-        };
-
-        console.log("temp: " + temp);
-        console.log("equation: " + equation);
     });
 
 });
@@ -169,4 +152,25 @@ function calculateEquation() {
     console.log("temp: " + temp);
     console.log("reset: " + reset);
     console.log("isProcessing: " + isProcessing);
+}
+
+
+/**
+ * This removes the last character in the temp variable, allowing the user to make corrections on the calculator display.
+ */
+function buttonBack() {
+    if (temp === "") {
+        isProcessing = true;
+        return;
+    }
+    temp = temp.slice(0, -1);
+
+    if (temp === "") {
+        document.getElementById("answer").innerText = 0;
+    } else {
+        document.getElementById("answer").innerText = temp;
+    };
+
+    console.log("temp: " + temp);
+    console.log("equation: " + equation);
 }

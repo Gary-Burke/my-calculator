@@ -52,7 +52,7 @@ body {
 }
 
 #cal-body {
-    border: 1.5px ridge rgb(30, 30, 30);
+    border: 1.5px ridge rgb(20, 20, 20);
     border-radius: 1.5rem;
     background: linear-gradient(145deg, rgb(50, 50, 55), rgb(25, 25, 30) );
     box-shadow:
