@@ -69,11 +69,15 @@ function buildEquationOperand(e) {
 
     const value = e.currentTarget.getAttribute("data-value");
 
+    
+
     if (value === "(") {
         bracketOpen += 1;
     } else if (value === ")") {
+        if (bracketClosed === bracketOpen) return;
         bracketClosed += 1;
     }
+    
 
     // This check stops the entire function if value is 0 and second would be too.
     // Prevents value like 00256
@@ -110,7 +114,6 @@ function buildEquationOperand(e) {
     document.getElementById("answer").innerText = temp;
     isProcessing = false;
 
-    console.log("isProcessing: " + isProcessing);
 }
 
 
