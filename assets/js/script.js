@@ -75,11 +75,6 @@ function buildEquationOperand(e) {
         bracketClosed += 1;
     }
 
-    if (bracketOpen !== bracketClosed) {
-        isProcessing = true;
-    }
-
-
     // This check stops the entire function if value is 0 and second would be too.
     // Prevents value like 00256
     if ((temp.length === 1) && (temp === "0") && (value === "0")) {
@@ -113,8 +108,9 @@ function buildEquationOperand(e) {
     }
 
     document.getElementById("answer").innerText = temp;
-    isProcessing = (bracketOpen !== bracketClosed); // only unlock operators when brackets are balanced
+    isProcessing = false;
 
+    console.log("isProcessing: " + isProcessing);
 }
 
 
@@ -141,7 +137,7 @@ function buildEquationOperator(e) {
  * Calculates built equation by evaluating expression with mathjs.
  */
 function calculateEquation() {
-    if (isProcessing || reset) return;
+    if (isProcessing || reset || (bracketOpen !== bracketClosed)) return;
 
     if (temp) {
         equation += temp;
