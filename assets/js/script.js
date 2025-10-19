@@ -168,7 +168,8 @@ function buildEquationOperand(e) {
 
     document.getElementById("answer").innerText = temp;
     isProcessing = false;
-    console.log("temp: " + temp);
+
+    console.log("temp: " + temp); // TODO: Delete
 
 }
 
@@ -179,15 +180,24 @@ function buildEquationOperand(e) {
 function buildEquationOperator(e) {
     if (isProcessing) return;
 
-    reset = false;
     const value = e.currentTarget.getAttribute("data-value");
+    reset = false;
 
-    equation += temp + value;
-    document.getElementById("equation").innerText = equation;
-    temp = "";
-    document.getElementById("answer").innerText = 0;
+    if ((temp === "(") && (value !== "-")) return;
+
+    if (bracketOpen !== bracketClosed) {
+        temp += value;
+        document.getElementById("answer").innerText = temp;
+    } else {
+        equation += temp + value;
+        document.getElementById("equation").innerText = equation;
+        temp = "";
+        document.getElementById("answer").innerText = 0;
+    }
 
     isProcessing = true;
+
+    console.log("temp: " + temp); // TODO: Delete
 
 }
 
