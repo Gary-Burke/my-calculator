@@ -9,19 +9,17 @@ let reset = false; // Resets the equation and answer, if a numbers is pressed af
 let bracketOpen = 0;
 let bracketClosed = 0;
 
+let bracketOpenText = document.querySelector("#bracket-open>span");
+let bracketClosedText = document.querySelector("#bracket-closed>span");
+
 // Wait for the DOM to load before executing functions.
 document.addEventListener("DOMContentLoaded", function () {
 
-    /**
-     * Add event listener for keyboard keys
-     */
+    // Add event listener for keyboard keys     
     document.addEventListener("keydown", handleKey);
 
-
-    /**
-     * Adds the is-active class to all buttons when pressed or clicked.
-     * Works with touch screen and better ux with mobile.
-     */
+    // Adds the is-active class to all buttons when pressed or clicked.
+    // Works with touch screen and better ux with mobile.     
     document.querySelectorAll('.button').forEach(btn => {
         btn.addEventListener('pointerdown', () => btn.classList.add('is-active'));
         btn.addEventListener('pointerup', () => btn.classList.remove('is-active'));
@@ -29,42 +27,28 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener('pointercancel', () => btn.classList.remove('is-active'));
     });
 
-
-    /**
-     * Function for handling operands 0-9 ()
-     */
+    // Function for handling operands 0-9 ()
     let operands = document.getElementsByClassName("button-operand");
     for (let operand of operands) {
         operand.addEventListener("click", buildEquationOperand)
     };
 
-
-    /**
-     * Function for handling operators + - / *
-     */
+    // Function for handling operators + - / * 
     let operators = document.getElementsByClassName("button-operator");
     for (let operator of operators) {
         operator.addEventListener("click", buildEquationOperator)
     };
 
-    /**
-     * Function for handling equals button "="
-     */
+    // Function for handling equals button "="     
     let equals = document.getElementById("button-equals");
     equals.addEventListener("click", calculateEquation);
 
-
-    /**
-     * Function for handling backspace on calculator display
-     */
+    // Function for handling backspace on calculator display     
     let backButton = document.getElementById("button-back");
     backButton.addEventListener("click", buttonBack);
 
-
-    /**
-     * Function handle button clear "C"
-     * This resets the entire calculator display, variables and equation.
-     */
+    // Function handle button clear "C"
+    // This resets the entire calculator display, variables and equation.     
     let clear = document.getElementById("button-clear");
     clear.addEventListener("click", () => {
         equation = "";
@@ -74,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("answer").innerText = 0;
         document.getElementById("equation").innerText = 0;
         bracketClosed = 0;
+        bracketOpenText.textContent = "";
         bracketOpen = 0;
+        bracketClosedText.textContent = "";
     });
 
 });
@@ -140,10 +126,12 @@ function buildEquationOperand(e) {
     // Keeps track of how many open/close brackets there are in the equation
     if (value === "(") {
         bracketOpen += 1;
+        bracketOpenText.textContent = bracketOpen;
     } else if (value === ")") {
         if (bracketClosed === bracketOpen) return; // Prevent ")" from being used before "("
         if (temp.at(-1) === "(") return; // Prevent empty brackets i.e. "()"
         bracketClosed += 1;
+        bracketClosedText.textContent = bracketClosed;
     }
 
 
@@ -234,6 +222,8 @@ function calculateEquation() {
 
     temp = "";
     reset = true;
+    bracketOpenText.textContent = "";
+    bracketClosedText.textContent = "";
 }
 
 
@@ -246,11 +236,30 @@ function buttonBack() {
         return;
     }
 
+    if (temp.at(-1) === "(") {        
+        bracketOpen -= 1;
+        if (bracketOpen === 0) {
+            bracketOpenText.textContent = "";
+        } else {
+            bracketOpenText.textContent = bracketOpen;
+        }
+        
+    } else {
+        if (temp.at(-1) === ")") {
+            bracketClosed -= 1;
+            if (bracketClosed === 0) {
+                bracketClosedText.textContent = "";
+            } else {
+                bracketClosedText.textContent = bracketClosed;
+            }
+        }
+    }
+
     temp = temp.slice(0, -1);
 
     if (temp === "") {
         document.getElementById("answer").innerText = 0;
     } else {
         document.getElementById("answer").innerText = temp;
-    };
+    }
 }
